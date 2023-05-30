@@ -1,0 +1,22 @@
+version: "3.5"
+services:
+  app:
+    container_name: sistema-contrato
+    image: sistema-contrato
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./:/var/www/html
+    environment:
+      - XDEBUG_START_WITH_REQUEST=yes
+      - XDEBUG_DISCOVER_CLIENT_HOST=false
+    ports:
+      - "8082:80"
+    networks:
+      - sistema-contrato
+
+networks:
+  sistema-contrato:
+    name: sistema-contrato
+    driver: bridge
